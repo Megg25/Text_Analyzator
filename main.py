@@ -48,18 +48,23 @@ else:
 print(oddelovac)
 
 print("Now, we have 3 texts to be analyzed.Choose one of them.")
-text_number = int(input("Enter a number btw. 1 and 3 to select: "))
+text_number = input("Enter a number btw. 1 and 3 to select: ")
+for a in text_number:
+    if a.isalpha() or a == "." or a == ",":
+        print("Sorry,", text_number, "is incorrect")
+        exit()
 
 print(oddelovac)
-if text_number == 1:
+if int(text_number) == 1:
     your_text = TEXTS[0]
     print(your_text)
-elif text_number == 2:
+elif int(text_number) == 2:
     your_text = TEXTS[1]
     print(your_text)
-elif text_number == 3:
+elif int(text_number) == 3:
     your_text = TEXTS[2]
     print(your_text)
+
 print(oddelovac)
 
 words_number = your_text.split()
@@ -87,13 +92,15 @@ print(oddelovac)
 clear_words = [word.strip(".,! ").lower() for word in words_list]
 dictionary = {}
 for word in clear_words:
-    for key in word:
-        key = len(word)
-    dictionary[str(key)] = dictionary.setdefault(str(key), 0) + 1
-    continue
-
-for i in dictionary:
-    print(i, "|", "*" * int(i), "|", dictionary[str(i)])
+    delka = len(word)
+    if delka in dictionary.keys():
+        dictionary[delka] = dictionary[delka] + 1
+    else:
+        dictionary[delka] = 1
+keys = list(dictionary.keys())
+keys.sort()
+for delka in keys:
+    print(delka, "|", "*" * dictionary[delka], "|", dictionary[delka])
 
 print(oddelovac)
 
